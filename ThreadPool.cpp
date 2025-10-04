@@ -20,6 +20,8 @@ ThreadPool::ThreadPool(size_t num_threads)
   {
     workers.emplace_back(&ThreadPool::worker_loop, this);
   }
+  // Start the printing thread
+  printerThread = std::thread(&ThreadPool::printer_loop, this);
 }
 
 void ThreadPool::worker_loop() 
